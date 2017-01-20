@@ -44,7 +44,7 @@ module.exports = Generator.extend({
         when: answers => answers.type === 'Model',
         type: 'input',
         name: 'modelPath',
-        message: 'where do you want to save this Model?'
+        message: 'Where do you want to save this Model?'
       },
 			{
 				type: 'input',
@@ -62,7 +62,7 @@ module.exports = Generator.extend({
 	writing() {
 		if (this.props.type === 'Model') {
 			this.fs.copyTpl(
-				this.templatePath('model.js'),
+				this.templatePath('model.tpl.js'),
 				this.destinationPath(`${this.props.modelPath}${this.props.modelName}.js`),
 				this.props
 			)
