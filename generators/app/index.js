@@ -63,7 +63,7 @@ module.exports = Generator.extend({
 		if (this.props.type === 'Model') {
 			this.fs.copyTpl(
 				this.templatePath('model.tpl.js'),
-				this.destinationPath(`${this.props.modelPath}${this.props.modelName}.js`),
+				this.destinationPath(`${this.props.modelPath}/${this.props.modelName}.js`),
 				this.props
 			)
 		}

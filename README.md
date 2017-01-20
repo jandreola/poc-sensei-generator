@@ -7,8 +7,8 @@ First, install [Yeoman](http://yeoman.io) and generator-sensei using [npm](https
 
 ```bash
 npm install -g yo
-npm install -g generator-sensei
 ```
+Because this project is not available in NPM, you have to clone this repo in your machine and run `npm link` inside this project folder
 
 Then generate your new project:
 
