@@ -2,9 +2,6 @@
 const Generator = require('yeoman-generator');
 
 module.exports = Generator.extend({
-  constructor: function () {
-    this.destinationRoot(process.cwd())
-  },
   prompting: function () {
 
     const prompts = [
