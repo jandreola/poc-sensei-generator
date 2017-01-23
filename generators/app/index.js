@@ -1,10 +1,13 @@
 'use strict';
-var Generator = require('yeoman-generator');
+const Generator = require('yeoman-generator');
 
 module.exports = Generator.extend({
+  constructor: function () {
+    this.destinationRoot(process.cwd())
+  },
   prompting: function () {
 
-    var prompts = [
+    const prompts = [
       {
         type: 'list',
         name: 'type',

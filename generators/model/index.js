@@ -1,11 +1,12 @@
 'use strict';
-var Generator = require('yeoman-generator');
+const Generator = require('yeoman-generator');
+
 
 module.exports = Generator.extend({
 
   prompting: function () {
 
-    var prompts = [
+    const prompts = [
       {
         type: 'input',
         name: 'modelName',
@@ -19,7 +20,7 @@ module.exports = Generator.extend({
       {
         type: 'input',
         name: 'modelID',
-        message: 'What is the ID for this model?'
+        message: 'What is the primary key (ID) for this model?'
       },
       {
         type: 'input',
@@ -29,7 +30,8 @@ module.exports = Generator.extend({
       {
         type: 'input',
         name: 'modelPath',
-        message: 'Where do you want to save this Model?'
+        message: 'Where do you want to save this Model?',
+        default: `${process.cwd()}\\Web\\global\\model`
       },
       {
         type: 'input',
@@ -45,12 +47,11 @@ module.exports = Generator.extend({
   },
 
   writing() {
-    this.destinationRoot(process.cwd())
     this.fs.copyTpl(
       this.templatePath('model.tpl.js'),
       this.destinationPath(`${this.props.modelPath}/${this.props.modelName}.js`),
       this.props
     )
-    console.log(this.destinationPath(`/${this.props.modelPath}/${this.props.modelName}.js`))
+    this.log(this.destinationPath(`${this.props.modelPath}\\${this.props.modelName}.js`))
   }
 });
