@@ -12,9 +12,9 @@ module.exports = Generator.extend({
         choices: [
           'Model',
           'System Setting',
-          'Stateless Component (View Only)',
-          'Stateful Component',
-          'Widget'
+          'Stateless Component (View Only) - Coming Soon',
+          'Stateful Component - Coming Soon',
+          'Widget - Coming Soon'
         ]
       }
     ];
