@@ -64,9 +64,9 @@ module.exports = Generator.extend({
     this.destinationRoot(process.cwd())
     this.fs.copyTpl(
       this.templatePath('systemSetting.tpl.sql'),
-      this.destinationPath(path.normalize(`/SchemaMigration/${getFolderName(getDirectories())}/001 - New System Setting ${this.props.systemSettingKey}.sql`)),
+      this.destinationPath(path.normalize(`${process.cwd()}/SchemaMigration/${getFolderName(getDirectories())}/001 - New System Setting ${this.props.systemSettingKey}.sql`)),
       this.props
     )
-    this.log(path.normalize(`/SchemaMigration/${getFolderName(getDirectories(), this.props.taskID)}/001 - New System Setting ${this.props.systemSettingKey}.sql`))
+    this.log(path.normalize(`${process.cwd()}/SchemaMigration/${getFolderName(getDirectories(), this.props.taskID)}/001 - New System Setting ${this.props.systemSettingKey}.sql`))
   }
 });
