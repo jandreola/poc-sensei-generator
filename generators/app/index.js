@@ -11,6 +11,7 @@ module.exports = Generator.extend({
         message: 'What do you want to create?',
         choices: [
           'Model',
+          'System Setting',
           'Stateless Component (View Only)',
           'Stateful Component',
           'Widget'
@@ -28,6 +29,15 @@ module.exports = Generator.extend({
           }
         }, {
           local: require.resolve("./../model")
+        });
+      }
+      if (this.props.type === 'System Setting') {
+        this.composeWith("sensei:systemSetting", {
+          options: {
+            nested: true
+          }
+        }, {
+          local: require.resolve("./../systemSetting")
         });
       }
     });
