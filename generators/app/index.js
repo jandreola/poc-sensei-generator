@@ -6,15 +6,14 @@ module.exports = Generator.extend({
 
     const prompts = [
       {
-        type: 'list',
+        type: 'checkbox',
         name: 'type',
         message: 'What do you want to create?',
         choices: [
           'Model',
           'System Setting',
           'Stateless Component (View Only)',
-          'Stateful Component - Coming Soon',
-          'Widget - Coming Soon'
+          'Component'
         ]
       }
     ];
@@ -22,34 +21,48 @@ module.exports = Generator.extend({
     return this.prompt(prompts).then(props => {
       // To access props later use this.props.someAnswer;
       this.props = props;
+
       /**
        * Model
        */
-      if (this.props.type === 'Model') {
+      if (this.props.type.includes('Model')) {
         this.composeWith("sensei:model", {
           options: { nested: true }
         }, {
           local: require.resolve("./../model")
         });
       }
+
       /**
        * System Setting
        */
-      if (this.props.type === 'System Setting') {
+      if (this.props.type.includes('System Setting')) {
         this.composeWith("sensei:systemSetting", {
           options: { nested: true }
         }, {
           local: require.resolve("./../systemSetting")
         });
       }
+
       /**
        * Stateless component
        */
-      if (this.props.type === 'Stateless Component (View Only)') {
+      if (this.props.type.includes('Stateless Component (View Only)')) {
         this.composeWith("sensei:statelessComponent", {
           options: { nested: true }
         }, {
           local: require.resolve("./../statelessComponent")
+        });
+      }
+
+      /**
+       * Component
+       */
+      if (this.props.type.includes('Component')) {
+        this.composeWith("sensei:component", {
+          options: { nested: true }
+        }, {
+          local: require.resolve("./../component")
         });
       }
     });
