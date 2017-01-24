@@ -35,12 +35,12 @@ module.exports = Generator.extend({
       {
         type: 'input',
         name: 'systemSettingValue',
-        message: 'What is the value? (Don\'t forget quote for strings)'
+        message: 'What is the SS value? (Don\'t forget quote for strings)'
       },
       {
         type: 'input',
         name: 'systemSettingDescription',
-        message: 'Description:'
+        message: 'System setting description:'
       },
       {
         type: 'input',

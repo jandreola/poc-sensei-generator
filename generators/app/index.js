@@ -11,9 +11,10 @@ module.exports = Generator.extend({
         message: 'What do you want to create?',
         choices: [
           'Model',
-          'System Setting',
           'Stateless Component (View Only)',
-          'Component'
+          'Component',
+          'System Setting',
+          'User Permission'
         ]
       }
     ];
@@ -63,6 +64,17 @@ module.exports = Generator.extend({
           options: { nested: true }
         }, {
           local: require.resolve("./../component")
+        });
+      }
+
+      /**
+       * User Permission
+       */
+      if (this.props.type.includes('User Permission')) {
+        this.composeWith("sensei:userPermission", {
+          options: { nested: true }
+        }, {
+          local: require.resolve("./../userPermission")
         });
       }
     });
