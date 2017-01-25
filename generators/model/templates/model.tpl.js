@@ -12,7 +12,7 @@
 		url: '<%= modelUrl %>',
 		constructor: <%= modelName %>,
 		id: '<%= modelID %>',
-		label:, '<%= modelLabel %>'
+		label: '<%= modelLabel %>'
 	})
 
 	function <%= modelName %>(_data) {
