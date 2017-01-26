@@ -47,5 +47,10 @@ module.exports = Generator.extend({
       this.destinationPath(path.normalize(`${process.cwd()}/Web/global/component/${this.props.componentName}/${this.props.componentName}.vm.js`)),
       this.props
     )
+    this.fs.copyTpl(
+      this.templatePath('readme.tpl.md'),
+      this.destinationPath(path.normalize(`${process.cwd()}/Web/global/component/${this.props.componentName}/readme.md`)),
+      this.props
+    )
   }
 });
