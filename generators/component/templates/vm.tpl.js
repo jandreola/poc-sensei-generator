@@ -1,13 +1,13 @@
 /**
- * @name   <%= componentName %>
- * @author <%= Author %>
- * @return {function}
- */
+* @name   <%= componentName %>
+* @author <%= Author %>
+* @return {function}
+*/
 (function (global){
-  var <%= componentName %> = Util.getObjectFromPath('<%= componentPath %>.<%= componentName %>')
-  <%= componentName %>.vm = <%= componentName %>VM
+    var <%= componentName %> = Util.getObjectFromPath('<%= componentPath %>.<%= componentName %>')
+    <%= componentName %>.vm = <%= componentName %>VM
 
-  function <%= componentName %>VM(options) {
+    function <%= componentName %>VM(options) {
 
-  }
+    }
 }(window))

@@ -4,14 +4,14 @@
  * @return {function}
  */
 (function (global){
-  var <%= componentName %> = Util.getObjectFromPath('<%= componentPath %>.<%= componentName %>')
-  <%= componentName %>.controller = <%= componentName %>Ctrl
+    var <%= componentName %> = Util.getObjectFromPath('<%= componentPath %>.<%= componentName %>')
+    <%= componentName %>.controller = <%= componentName %>Ctrl
 
-  function <%= componentName %>Ctrl(options) {
-    var ctrl = {
-      vm: new <%= componentName %>.vm(options)
+    function <%= componentName %>Ctrl(options) {
+        var ctrl = {
+            vm: new <%= componentName %>.vm(options)
+        }
+
+        return ctrl
     }
-
-    return ctrl
-  }
 }(window))
