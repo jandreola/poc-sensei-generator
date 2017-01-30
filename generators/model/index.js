@@ -9,12 +9,18 @@ module.exports = Generator.extend({
       {
         type: 'input',
         name: 'modelName',
-        message: 'What is the model name?',
+        message: 'What is the model name?'
       },
       {
         type: 'input',
         name: 'modelUrl',
         message: 'What is the API endpoint for this model?'
+      },
+      {
+        type: 'editor',
+        name: 'modelSample',
+        message: 'Provide a valid JSON sample to build the model (optional)',
+        filter: rawJSON => Object.keys(JSON.parse(rawJSON))
       },
       {
         type: 'input',
@@ -35,7 +41,8 @@ module.exports = Generator.extend({
       {
         type: 'input',
         name: 'Author',
-        message: 'Author'
+        message: 'Author',
+        store   : true
       }
     ];
 

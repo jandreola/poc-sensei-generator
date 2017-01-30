@@ -10,6 +10,7 @@ module.exports = Generator.extend({
         type: 'input',
         name: 'componentName',
         message: 'What is the component name?',
+        filter: rawString => stringFn.camelCase(rawString)
       },
       {
         type: 'input',
@@ -20,7 +21,8 @@ module.exports = Generator.extend({
       {
         type: 'input',
         name: 'Author',
-        message: 'Author'
+        message: 'Author',
+        store   : true
       }
     ];
 

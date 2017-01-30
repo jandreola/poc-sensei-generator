@@ -20,6 +20,8 @@
 
 		global.model.Base.call(this, data)
 
+		<% for(var i=0; i<modelSample.length; i++) {%>this.<%= modelSample[i] %> = m.prop(data.<%= modelSample[i] %> || null)
+		<% } %>
 	};
 
 }(window));

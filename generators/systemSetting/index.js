@@ -1,27 +1,9 @@
 'use strict';
 const Generator = require('yeoman-generator');
+const getDirectories = require('../../utilities/getDirectories')
+const getFolderName = require('../../utilities/getFolderName')
 const path = require('path')
 const fs = require('fs')
-
-function getDirectories() {
-  const srcpath = `${process.cwd()}/SchemaMigration/`
-  return fs.readdirSync(srcpath).filter(function(file) {
-    return fs.statSync(path.join(srcpath, file)).isDirectory();
-  });
-}
-
-function getFolderName(folderNames, taskID) {
-  const regex = /_?Release\s(\d+) - \d+/g // matches _Release (000) - 000000
-  var last = "000"
-  var pad = "000"
-  folderNames.map(folder => {
-    let number = regex.exec(folder)
-    if (number && number[1] > last) last = number[1]
-  })
-  last = +last + 1
-  last += ''
-  return `Release ${pad.substring(0, pad.length - last.length) + last} - ${taskID}`
-}
 
 module.exports = Generator.extend({
   prompting: function () {
@@ -35,7 +17,7 @@ module.exports = Generator.extend({
       {
         type: 'input',
         name: 'systemSettingValue',
-        message: 'What is the SS value? (Don\'t forget quote for strings)'
+        message: 'What is the SS value?'
       },
       {
         type: 'input',
@@ -50,7 +32,8 @@ module.exports = Generator.extend({
       {
         type: 'input',
         name: 'Author',
-        message: 'Author'
+        message: 'Author',
+        store   : true
       }
     ];
 

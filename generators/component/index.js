@@ -1,6 +1,7 @@
 'use strict';
 const Generator = require('yeoman-generator');
 const path = require('path')
+const stringFn = require('string-fn')
 
 module.exports = Generator.extend({
   prompting: function () {
@@ -10,6 +11,7 @@ module.exports = Generator.extend({
         type: 'input',
         name: 'componentName',
         message: 'What is the component name?',
+        filter: rawString => stringFn.camelCase(rawString)
       },
       {
         type: 'input',
@@ -20,7 +22,8 @@ module.exports = Generator.extend({
       {
         type: 'input',
         name: 'Author',
-        message: 'Author'
+        message: 'Author',
+        store   : true
       }
     ];
 

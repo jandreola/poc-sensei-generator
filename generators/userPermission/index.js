@@ -1,5 +1,7 @@
 'use strict';
 const Generator = require('yeoman-generator');
+const getDirectories = require('../../utilities/getDirectories')
+const getFolderName = require('../../utilities/getFolderName')
 const path = require('path')
 const fs = require('fs')
 
@@ -50,7 +52,8 @@ module.exports = Generator.extend({
       {
         type: 'input',
         name: 'Author',
-        message: 'Author'
+        message: 'Author',
+        store   : true
       }
     ];
 
