@@ -20,7 +20,7 @@ module.exports = Generator.extend({
         type: 'editor',
         name: 'modelSample',
         message: 'Provide a valid JSON sample to build the model (optional)',
-        filter: rawJSON => Object.keys(JSON.parse(rawJSON))
+        filter: rawJSON => JSON.parse(rawJSON)
       },
       {
         type: 'input',

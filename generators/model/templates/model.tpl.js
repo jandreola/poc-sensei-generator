@@ -3,6 +3,21 @@
  * @author <%= Author %>
  * @return {function}
  */
+<%
+	function getBlankFor(value) {
+		var type = typeof value
+		var blank = null
+
+		switch (type) {
+			case 'string' : blank = "''"; break
+			case 'number' : blank = 0; break
+			case 'boolean' : blank = false; break
+			case 'object' : blank = Array.isArray(value) ? '[]' : '{}'; break
+		}
+
+		return blank
+	}
+%>
 (function (global) {
 	'use strict';
 	global.model = global.model || {};
@@ -20,8 +35,9 @@
 
 		global.model.Base.call(this, data)
 
-		<% for(var i=0; i<modelSample.length; i++) {%>this.<%= modelSample[i] %> = m.prop(data.<%= modelSample[i] %> || null)
-		<% } %>
+		<% Object.keys(modelSample).forEach(function(prop) { %>
+			this.<%= prop %> = m.prop(data.<%= prop %> || <%- getBlankFor(modelSample[prop]) %>)
+		<% }); %>
 	};
 
 }(window));
