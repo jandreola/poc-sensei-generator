@@ -1,6 +1,7 @@
 'use strict';
 const Generator = require('yeoman-generator');
 const path = require('path')
+const stringFn = require('string-fn')
 
 module.exports = Generator.extend({
   prompting: function () {
