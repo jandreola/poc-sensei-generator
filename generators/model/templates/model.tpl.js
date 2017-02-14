@@ -36,8 +36,7 @@
 		global.model.Base.call(this, data)
 
 		<% Object.keys(modelSample).forEach(function(prop) { %>
-			this.<%= prop %> = m.prop(data.<%= prop %> || <%- getBlankFor(modelSample[prop]) %>)
-		<% }); %>
+			this.<%= prop %> = m.prop(data.<%= prop %> || <%- getBlankFor(modelSample[prop]) %>)<% }); %>
 	};
 
 }(window));
