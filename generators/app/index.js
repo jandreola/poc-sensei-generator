@@ -10,11 +10,14 @@ module.exports = Generator.extend({
         name: 'type',
         message: 'What do you want to create?',
         choices: [
-          'Model',
-          'Stateless Component (View Only)',
           'Component',
+          'Model',
+          'Feature Toggle',
           'System Setting',
-          'User Permission'
+          'User Permission',
+          'Stateless Component (View Only)',
+          'Stateless Component (View Only) ES2015 (Coming Soon)',
+          'Component ES2015 (Coming Soon)',
         ]
       }
     ];
@@ -68,6 +71,28 @@ module.exports = Generator.extend({
       }
 
       /**
+       * Stateless component ES 2015
+       */
+      if (this.props.type.includes('Stateless Component (View Only) ES2015')) {
+        this.composeWith("sensei:statelessComponentes2015", {
+          options: { nested: true }
+        }, {
+          local: require.resolve("./../statelessComponent-es2015")
+        });
+      }
+
+      /**
+       * Component ES 2015
+       */
+      if (this.props.type.includes('Component ES2015')) {
+        this.composeWith("sensei:componentes2015", {
+          options: { nested: true }
+        }, {
+          local: require.resolve("./../component-es2015")
+        });
+      }
+
+      /**
        * User Permission
        */
       if (this.props.type.includes('User Permission')) {
@@ -75,6 +100,17 @@ module.exports = Generator.extend({
           options: { nested: true }
         }, {
           local: require.resolve("./../userPermission")
+        });
+      }
+
+      /**
+       * Feature Toogle
+       */
+      if (this.props.type.includes('Feature Toggle')) {
+        this.composeWith("sensei:featureToggle", {
+          options: { nested: true }
+        }, {
+          local: require.resolve("./../featureToggle")
         });
       }
     });
