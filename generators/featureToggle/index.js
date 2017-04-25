@@ -12,7 +12,7 @@ module.exports = Generator.extend({
       {
         type: 'input',
         name: 'featureToggleName',
-        message: 'What is thefeatureToggleName key?',
+        message: 'What is Feature Toggle Key?',
       },
       {
         type: 'input',
