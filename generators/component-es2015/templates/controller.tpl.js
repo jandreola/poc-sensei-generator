@@ -1,5 +1,5 @@
 import m from 'mithril';
-import <%= componentName %>VM from './<%= componentName %>VM'
+import vm from './vm'
 
 function controller() {
 	const ctrl = {
