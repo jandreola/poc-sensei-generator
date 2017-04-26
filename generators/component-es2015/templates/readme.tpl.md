@@ -5,10 +5,10 @@ Short description Here
 ## Usage
 
 ```js
-const <%= componentName %>Ctrl = new <%= componentPath %>.<%= componentName %>.controller(options)
+const <%= componentName %>Ctrl = new <%= componentName %>.controller(options)
 
 // view
-<%= componentPath %>.<%= componentName %>.view(<%= componentName %>Ctrl)
+<%= componentName %>.view(<%= componentName %>Ctrl)
 
 ```
 
