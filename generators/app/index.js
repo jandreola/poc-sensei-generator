@@ -85,7 +85,7 @@ module.exports = Generator.extend({
        * Component ES 2015
        */
       if (this.props.type.includes('Component ES2015')) {
-        this.composeWith("sensei:componentes2015", {
+        this.composeWith("sensei:component-es2015", {
           options: { nested: true }
         }, {
           local: require.resolve("./../component-es2015")
