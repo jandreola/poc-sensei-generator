@@ -41,7 +41,12 @@ module.exports = Generator.extend({
     )
     this.fs.copyTpl(
       this.templatePath('vm.tpl.js'),
-      this.destinationPath(path.normalize(`${process.cwd()}/WebSrc/widgets/${this.props.componentName}/${this.props.componentName}VM.js`)),
+      this.destinationPath(path.normalize(`${process.cwd()}/WebSrc/widgets/${this.props.componentName}/vm.js`)),
+      this.props
+    )
+    this.fs.copyTpl(
+      this.templatePath('index.tpl.js'),
+      this.destinationPath(path.normalize(`${process.cwd()}/WebSrc/widgets/${this.props.componentName}/index.js`)),
       this.props
     )
     this.fs.copyTpl(

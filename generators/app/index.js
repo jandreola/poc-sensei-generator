@@ -10,6 +10,7 @@ module.exports = Generator.extend({
         name: 'type',
         message: 'What do you want to create?',
         choices: [
+          'Component ES2015',
           'Component',
           'Model',
           'Feature Toggle',
@@ -17,7 +18,6 @@ module.exports = Generator.extend({
           'User Permission',
           'Stateless Component (View Only)',
           'Stateless Component (View Only) ES2015 (Coming Soon)',
-          'Component ES2015 (Coming Soon)',
         ]
       }
     ];
