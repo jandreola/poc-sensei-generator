@@ -15,6 +15,12 @@ module.exports = Generator.extend({
       },
       {
         type: 'input',
+        name: 'componentPath',
+        message: 'Where do you want to save this?',
+        default: path.normalize(`WebSrc/`)
+      },
+      {
+        type: 'input',
         name: 'Author',
         message: 'Author',
         store   : true
@@ -31,27 +37,27 @@ module.exports = Generator.extend({
     this.destinationRoot(process.cwd())
     this.fs.copyTpl(
       this.templatePath('controller.tpl.js'),
-      this.destinationPath(path.normalize(`${process.cwd()}/WebSrc/widgets/${this.props.componentName}/controller.js`)),
+      this.destinationPath(path.normalize(`${process.cwd()}/${this.props.componentPath}/${this.props.componentName}/controller.js`)),
       this.props
     )
     this.fs.copyTpl(
       this.templatePath('view.tpl.js'),
-      this.destinationPath(path.normalize(`${process.cwd()}/WebSrc/widgets/${this.props.componentName}/view.js`)),
+      this.destinationPath(path.normalize(`${process.cwd()}/${this.props.componentPath}/${this.props.componentName}/view.js`)),
       this.props
     )
     this.fs.copyTpl(
       this.templatePath('vm.tpl.js'),
-      this.destinationPath(path.normalize(`${process.cwd()}/WebSrc/widgets/${this.props.componentName}/vm.js`)),
+      this.destinationPath(path.normalize(`${process.cwd()}/${this.props.componentPath}/${this.props.componentName}/vm.js`)),
       this.props
     )
     this.fs.copyTpl(
       this.templatePath('index.tpl.js'),
-      this.destinationPath(path.normalize(`${process.cwd()}/WebSrc/widgets/${this.props.componentName}/index.js`)),
+      this.destinationPath(path.normalize(`${process.cwd()}/${this.props.componentPath}/${this.props.componentName}/index.js`)),
       this.props
     )
     this.fs.copyTpl(
       this.templatePath('readme.tpl.md'),
-      this.destinationPath(path.normalize(`${process.cwd()}/WebSrc/widgets/${this.props.componentName}/readme.md`)),
+      this.destinationPath(path.normalize(`${process.cwd()}/${this.props.componentPath}/${this.props.componentName}/readme.md`)),
       this.props
     )
   }

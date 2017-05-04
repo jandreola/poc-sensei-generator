@@ -20,7 +20,6 @@
 %>
 (function (global) {
 	'use strict';
-	global.model = global.model || {};
 
 	var <%= modelName %>Class = global.model.Base.createClass({
 		name: '<%= modelName %>',
@@ -34,9 +33,8 @@
 		var data = _data || {}
 
 		global.model.Base.call(this, data)
-
 		<% Object.keys(modelSample).forEach(function(prop) { %>
-			this.<%= prop %> = m.prop(data.<%= prop %> || <%- getBlankFor(modelSample[prop]) %>)<% }); %>
+		this.<%= prop %> = m.prop(data.<%= prop %> || <%- getBlankFor(modelSample[prop]) %>)<% }); %>
 	};
 
 }(window));
