@@ -10,10 +10,11 @@ module.exports = Generator.extend({
         name: 'type',
         message: 'What do you want to create?',
         choices: [
-          'Component ES2015',
-          'Component',
           'Model',
+          'Component ES2015',
+          'Simple CRUD',
           'Feature Toggle',
+          'Component',
           'System Setting',
           'User Permission',
           'Stateless Component (View Only)',
@@ -34,6 +35,17 @@ module.exports = Generator.extend({
           options: { nested: true }
         }, {
           local: require.resolve("./../model")
+        });
+      }
+
+      /**
+       * Simple CRUD
+       */
+      if (this.props.type.includes('Simple CRUD')) {
+        this.composeWith("sensei:simpleCRUD", {
+          options: { nested: true }
+        }, {
+          local: require.resolve("./../simpleCRUD")
         });
       }
 

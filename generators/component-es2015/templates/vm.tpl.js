@@ -1,5 +1,3 @@
-import m from 'mithril';
-
 class <%= componentName %>VM {
 	constructor() {
 

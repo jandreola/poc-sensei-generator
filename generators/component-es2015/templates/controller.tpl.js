@@ -1,18 +1,18 @@
-import m from 'mithril';
 import vm from './vm'
 
-function controller() {
+function controller(options) {
 	const ctrl = {
-		init: init
+		vm: new vm,
+		init
 	}
 
 	function init() {
 
 	}
 
-	init();
+	init()
 
-	return ctrl;
+	return ctrl
 }
 
 export default controller

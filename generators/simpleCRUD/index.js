@@ -15,6 +15,17 @@ module.exports = Generator.extend({
       },
       {
         type: 'input',
+        name: 'model',
+        message: 'What is the Model Path (e.g. model.Projects)?',
+      },
+      {
+        type: 'editor',
+        name: 'modelSample',
+        message: 'Provide a valid JSON sample to build the form',
+        filter: rawJSON => JSON.parse(rawJSON)
+      },
+      {
+        type: 'input',
         name: 'componentPath',
         message: 'Where do you want to save this?',
         default: path.normalize(`WebSrc/`)
