@@ -36,7 +36,7 @@ function controller(options) {
 			.then(updatedItem => {
 				ctrl.vm.Items().forEach(i => {
 					if (i[<%= model %>.id]() === updatedItem[0][<%= model %>.id]()) {
-						i.constructor(updatedItem.toJSON())
+						i.constructor(updatedItem[0].toJSON())
 						return notLoading()
 					}
 				})
