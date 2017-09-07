@@ -34,12 +34,16 @@ function controller(options) {
 		loading()
 		item.save()
 			.then(updatedItem => {
+				let found = false
 				ctrl.vm.Items().forEach(i => {
 					if (i[<%= model %>.id]() === updatedItem[0][<%= model %>.id]()) {
 						i.constructor(updatedItem[0].toJSON())
-						return notLoading()
+						found = true
 					}
+					if (!found) ctrl.vm.Items().push(updatedItem[0])
 				})
+				return notLoading()
+
 			}, errorHandler)
 	}
 
