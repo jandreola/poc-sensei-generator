@@ -26,8 +26,9 @@ function view(ctrl) {
 			return [
 				Util.if (ctrl.vm.modalCtrl(), widget.modal.view.bind(this, ctrl.vm.modalCtrl())),
 				row()
-					.col(6, m('span.admintool-main-Name', '<%= componentName %>'))
-					.col(6, '.text-right', m('span.btn.btn-success', {
+					.col(4, m('span.admintool-main-title', '<%= componentName %>'))
+					.col(4, searchInput(ctrl))
+					.col(4, '.text-right', m('span.btn.btn-success', {
 						onclick: ctrl.addItem
 					}, 'Add New <%= componentName %>')),
 				row()
@@ -50,8 +51,17 @@ function view(ctrl) {
 	])
 }
 
+function searchInput(ctrl) {
+	return m('input.form-control', {
+		oninput: m.withAttr('value', ctrl.vm.searchKeyword),
+		value: ctrl.vm.searchKeyword(),
+		placeholder: 'Quick Search'
+	})
+}
+
 
 function renderRow(ctrl, item) {
+	if (ctrl.vm.searchKeyword() && !Util.fuzzySearch(item[model.ConductorDataCategory.label](), ctrl.vm.searchKeyword())) return ''
 	return m('tr', [
 		m('td.is-link', {
 			onclick: ctrl.editItem.bind(this, item)

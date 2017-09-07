@@ -4,6 +4,7 @@ class <%= componentName %>VM {
 		this.Items = m.prop([])
 		this.modalCtrl = m.prop(null)
 		this.currentItemInModal = m.prop(null)
+		this.searchKeyword = m.prop('')
 	}
 }
 
