@@ -40,8 +40,8 @@ function controller(options) {
 						i.constructor(updatedItem[0].toJSON())
 						found = true
 					}
-					if (!found) ctrl.vm.Items().push(updatedItem[0])
 				})
+				if (!found) ctrl.vm.Items().push(updatedItem[0])
 				return notLoading()
 
 			}, errorHandler)
