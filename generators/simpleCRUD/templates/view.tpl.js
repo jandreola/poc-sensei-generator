@@ -61,7 +61,7 @@ function searchInput(ctrl) {
 
 
 function renderRow(ctrl, item) {
-	if (ctrl.vm.searchKeyword() && !Util.fuzzySearch(item[model.ConductorDataCategory.label](), ctrl.vm.searchKeyword())) return ''
+	if (ctrl.vm.searchKeyword() && !Util.fuzzySearch(item[<%= model %>.label](), ctrl.vm.searchKeyword())) return ''
 	return m('tr', [
 		m('td.is-link', {
 			onclick: ctrl.editItem.bind(this, item)

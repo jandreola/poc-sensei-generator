@@ -28,7 +28,17 @@ module.exports = Generator.extend({
         type: 'input',
         name: 'componentPath',
         message: 'Where do you want to save this?',
-        default: path.normalize(`WebSrc/`)
+        default: path.normalize(`WebSrc/admin/`)
+      },
+      {
+        type: 'input',
+        name: 'tabTitle',
+        message: 'What is the tab title in the admin page'
+      },
+      {
+        type: 'input',
+        name: 'linkTitle',
+        message: 'What is the tab title in the admin page'
       },
       {
         type: 'input',
