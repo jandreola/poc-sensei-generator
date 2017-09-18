@@ -49,11 +49,12 @@ function controller(options) {
 
 	function modalClosed() {
 		ctrl.vm.currentItemInModal(null)
+		ctrl.vm.modalCtrl(null)
 	}
 
 	function openModal(item) {
 		ctrl.vm.currentItemInModal(item)
-		if (!ctrl.vm.modalCtrl()) ctrl.vm.modalCtrl(new widget.modal.controller(getModalOptions()))
+		ctrl.vm.modalCtrl(new widget.modal.controller(getModalOptions()))
 		ctrl.vm.modalCtrl().open(form.bind(this, ctrl), ctrl.vm.currentItemInModal())
 	}
 
