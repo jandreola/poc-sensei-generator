@@ -43,7 +43,7 @@ function controller(options) {
 				})
 				if (!found) ctrl.vm.Items().push(updatedItem[0])
 				return notLoading()
-
+				ctrl.vm.modalCtrl().close()
 			}, errorHandler)
 	}
 
@@ -65,6 +65,7 @@ function controller(options) {
 			OnClose: modalClosed,
 			ActionCopy: 'Save',
 			ClickToCloseOverlay: false,
+			CloseOnAction: false,
 		}
 	}
 
