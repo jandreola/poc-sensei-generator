@@ -60,5 +60,10 @@ module.exports = Generator.extend({
       this.destinationPath(path.normalize(`${process.cwd()}/${this.props.componentPath}/${stringFn.kebabCase(this.props.componentName)}/readme.md`)),
       this.props
     )
+    this.fs.copyTpl(
+      this.templatePath('styles.tpl.scss'),
+      this.destinationPath(path.normalize(`${process.cwd()}/${this.props.componentPath}/${stringFn.kebabCase(this.props.componentName)}/styles.scss`)),
+      this.props
+    )
   }
 });
