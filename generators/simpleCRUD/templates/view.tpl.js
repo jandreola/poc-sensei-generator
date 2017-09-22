@@ -66,7 +66,7 @@ function renderRow(ctrl, item) {
 		m('td.is-link', {
 			onclick: ctrl.editItem.bind(this, item)
 		}, item[<%= model %>.label]()),
-		m('td', m('span.btn.btn-small.btn-danger', {
+		m('td.text-right', m('span.btn.btn-small.btn-danger', {
 			onclick: ctrl.removeItem.bind(this, item[<%= model %>.id]())
 		}, [
 			m('i.fa.fa-remove'),
