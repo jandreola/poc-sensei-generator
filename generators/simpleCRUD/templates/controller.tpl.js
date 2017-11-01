@@ -80,7 +80,7 @@ function controller(options) {
 
 	function errorHandler(err) {
 		Notify.error(err)
-		notLoading
+		notLoading()
 	}
 
 	function getItems() {
