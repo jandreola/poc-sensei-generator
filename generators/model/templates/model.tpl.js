@@ -4,7 +4,7 @@
  * @return {function}
  */
 <%
-	function getBlankFor(value) {
+	function getBlankFor(value, prop) {
 		var type = typeof value
 		var blank = null
 
@@ -16,6 +16,10 @@
 		}
 
 		return blank
+	}
+
+	function isObject(item) {
+		return typeof item === 'object' && !Array.isArray(item)
 	}
 %>
 (function (global) {
@@ -33,8 +37,14 @@
 		var data = _data || {}
 
 		global.model.Base.call(this, data)
-		<% Object.keys(modelSample).forEach(function(prop) { %>
-		this.<%= prop %> = m.prop(data.<%= prop %> || <%- getBlankFor(modelSample[prop]) %>)<% }); %>
+<% Object.keys(modelSample).forEach(function(prop) { if (isObject(modelSample[prop])) {%>
+		this.<%= prop %> = <%= `new ${prop}(data.${prop})`%><%} else {%>
+		this.<%= prop %> = m.prop(data.<%= prop %> || <%- getBlankFor(modelSample[prop], prop) %><% }}); %>
 	};
+<% Object.keys(modelSample).forEach(function(prop) { if (typeof modelSample[prop] === 'object' && !Array.isArray(modelSample[prop])) {%>
+
+	function <%= prop %>(data) {<% Object.keys(modelSample[prop]).forEach(function(propInner) { %>
+		this.<%= propInner %> = m.prop(data.<%= propInner %> || <%- getBlankFor(modelSample[prop][propInner], propInner) %>)<% }); %>
+	}<% }}); %>
 
 }(window));
