@@ -48,7 +48,7 @@ function controller(options) {
 	}
 
 	function modalClosed() {
-		ctrl.vm.currentItemInModal(null)
+		setTimeout(() => ctrl.vm.currentItemInModal(null), 0)
 		ctrl.vm.modalCtrl(null)
 	}
 
