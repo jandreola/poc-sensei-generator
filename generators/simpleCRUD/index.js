@@ -33,12 +33,12 @@ module.exports = Generator.extend({
       {
         type: 'input',
         name: 'tabTitle',
-        message: 'What is the tab title in the admin page'
+        message: 'What is the TAB title in the admin page'
       },
       {
         type: 'input',
         name: 'linkTitle',
-        message: 'What is the tab title in the admin page'
+        message: 'What is the LINK title in the admin page'
       },
       {
         type: 'input',

@@ -42,8 +42,9 @@ function controller(options) {
 					}
 				})
 				if (!found) ctrl.vm.Items().push(updatedItem[0])
-				return notLoading()
+				notLoading()
 				ctrl.vm.modalCtrl().close()
+				return
 			}, errorHandler)
 	}
 
