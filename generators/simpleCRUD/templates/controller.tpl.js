@@ -82,13 +82,13 @@ function controller(options) {
 
 	function errorHandler(err) {
 		Notify.error(err)
-		notLoading
+		notLoading()
 	}
 
 	function getItems() {
 		loading()
 		return <%= model %>.query()
-			.then(ctrl.vm.Items)
+			.then(ctrl.vm.Items, errorHandler)
 			.then(notLoading, notLoading)
 	}
 
