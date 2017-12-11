@@ -42,7 +42,7 @@ function view(ctrl) {
 						m('tbody', [
 							Util.if (ctrl.vm.Items().length,
 								() => ctrl.vm.Items().map(renderRow.bind(this, ctrl)),
-								() => m('tr[colspan=999]', m('p.text-center', 'No items to display.'))
+								() => m('tr', m('td[colspan=999].text-center', 'No items to display.'))
 							)
 						])
 					]))
