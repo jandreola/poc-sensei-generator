@@ -38,7 +38,7 @@
 
 		global.model.Base.call(this, data)
 <% Object.keys(modelSample).forEach(function(prop) { if (isObject(modelSample[prop])) {%>
-		this.<%= prop %> = <%= `new ${prop}(data.${prop})`%><%} else {%>
+		this.<%= prop %> = <%= `new ${prop}(data.${prop} || {})`%><%} else {%>
 		this.<%= prop %> = m.prop(data.<%= prop %> || <%- getBlankFor(modelSample[prop], prop) %>)<% }}); %>
 	};
 <% Object.keys(modelSample).forEach(function(prop) { if (typeof modelSample[prop] === 'object' && !Array.isArray(modelSample[prop])) {%>
