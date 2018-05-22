@@ -46,8 +46,8 @@ module.exports = Generator.extend({
       this.props
     )
     this.fs.copyTpl(
-      this.templatePath('vm.tpl.js'),
-      this.destinationPath(path.normalize(`${process.cwd()}/${this.props.componentPath}/${stringFn.kebabCase(this.props.componentName)}/vm.js`)),
+      this.templatePath('state.tpl.js'),
+      this.destinationPath(path.normalize(`${process.cwd()}/${this.props.componentPath}/${stringFn.kebabCase(this.props.componentName)}/state.js`)),
       this.props
     )
     this.fs.copyTpl(
@@ -56,8 +56,8 @@ module.exports = Generator.extend({
       this.props
     )
     this.fs.copyTpl(
-      this.templatePath('readme.tpl.md'),
-      this.destinationPath(path.normalize(`${process.cwd()}/${this.props.componentPath}/${stringFn.kebabCase(this.props.componentName)}/readme.md`)),
+      this.templatePath('options.tpl.js'),
+      this.destinationPath(path.normalize(`${process.cwd()}/${this.props.componentPath}/${stringFn.kebabCase(this.props.componentName)}/options.js`)),
       this.props
     )
     this.fs.copyTpl(

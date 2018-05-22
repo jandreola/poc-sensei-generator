@@ -1,9 +1,14 @@
 import './styles.scss'
 
-function view(ctrl) {
-	return m('.<%= componentName %>-component', [
+export default function view({state, ...ctrl}) {
+	if (state.loading) {
+		return loading()
+	}
 
+	return m('.<%= componentName %>-component', [
 	])
 }
 
-export default view
+function loading() {
+	return Util.loading()
+}
