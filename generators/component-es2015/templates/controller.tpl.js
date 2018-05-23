@@ -1,16 +1,16 @@
 import State from './state'
-import Options from './options'
+import Props from './props'
 
-export default function controller(options = {}) {
-	if (!(options instanceof Options)) {
-		options = new Options(options)
+export default function controller(props = {}) {
+	if (!(props instanceof Props)) {
+		props = new Props(props)
 	}
 
-	if (!options.validate()) {
-		throw new Error('options are not valid')
+	if (!props.validate()) {
+		throw new Error('props are not valid')
 	}
 
-	const state = new State(options)
+	const state = new State(props)
 
 	const ctrl = {
 		state,

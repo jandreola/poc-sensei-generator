@@ -42,7 +42,7 @@ module.exports = Generator.extend({
     )
     this.fs.copyTpl(
       this.templatePath('view.tpl.js'),
-      this.destinationPath(path.normalize(`${process.cwd()}/${this.props.componentPath}/${stringFn.kebabCase(this.props.componentName)}/view.js`)),
+      this.destinationPath(path.normalize(`${process.cwd()}/${this.props.componentPath}/${stringFn.kebabCase(this.props.componentName)}/views/index.js`)),
       this.props
     )
     this.fs.copyTpl(
@@ -56,13 +56,18 @@ module.exports = Generator.extend({
       this.props
     )
     this.fs.copyTpl(
-      this.templatePath('options.tpl.js'),
-      this.destinationPath(path.normalize(`${process.cwd()}/${this.props.componentPath}/${stringFn.kebabCase(this.props.componentName)}/options.js`)),
+      this.templatePath('props.tpl.js'),
+      this.destinationPath(path.normalize(`${process.cwd()}/${this.props.componentPath}/${stringFn.kebabCase(this.props.componentName)}/props.js`)),
       this.props
     )
     this.fs.copyTpl(
       this.templatePath('styles.tpl.scss'),
       this.destinationPath(path.normalize(`${process.cwd()}/${this.props.componentPath}/${stringFn.kebabCase(this.props.componentName)}/styles.scss`)),
+      this.props
+    )
+    this.fs.copyTpl(
+      this.templatePath('controller_test.tpl.js'),
+      this.destinationPath(path.normalize(`${process.cwd()}/${this.props.componentPath}/${stringFn.kebabCase(this.props.componentName)}/tests/controller_test.js`)),
       this.props
     )
   }

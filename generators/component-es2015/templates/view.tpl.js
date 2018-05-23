@@ -1,4 +1,4 @@
-import './styles.scss'
+import '../styles.scss'
 
 export default function view({state, ...ctrl}) {
 	if (state.loading) {

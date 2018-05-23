@@ -7,12 +7,12 @@ const DEFAULTS = {
 	// Add defaults here
 }
 
-// This options model uses a mixin that validates required fields
+// This props model uses a mixin that validates required fields
 export default class extends mix(Base).with(RequiredFieldsMixin) {
-	constructor(options = {}) {
-		super(options)
+	constructor(props = {}) {
+		super(props)
 
-		options = {...DEFAULTS, ...options}
+		props = {...DEFAULTS, ...props}
 
 		// Add properties here
 	}
