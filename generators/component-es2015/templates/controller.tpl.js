@@ -23,5 +23,5 @@ export default function controller(props = {}) {
 
 	init()
 
-	return ctrl
+	return Object.freeze(ctrl)
 }
