@@ -17,7 +17,7 @@ module.exports = Generator.extend({
         type: 'input',
         name: 'componentPath',
         message: 'Where do you want to save this?',
-        default: path.normalize(`WebSrc/`)
+        default: path.normalize(`WebSrc/widgets/`)
       },
       {
         type: 'input',

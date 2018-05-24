@@ -11,14 +11,12 @@ module.exports = Generator.extend({
         message: 'What do you want to create?',
         choices: [
           'Model',
-          'Component ES2015',
-          'Simple CRUD',
-          'Feature Toggle',
           'Component',
-          'System Setting',
-          'User Permission',
-          'Stateless Component (View Only)',
-          'Stateless Component (View Only) ES2015 (Coming Soon)',
+          'Simple Admin CRUD page',
+          'Feature Toggle (Needs update to use new Timestamp folders)',
+          'System Setting (Needs update to use new Timestamp folders)',
+          'User Permission (Needs update to use new Timestamp folders)',
+          // 'Stateless Component (View Only)',
         ]
       }
     ];
@@ -41,7 +39,7 @@ module.exports = Generator.extend({
       /**
        * Simple CRUD
        */
-      if (this.props.type.includes('Simple CRUD')) {
+      if (this.props.type.includes('Simple Admin CRUD page')) {
         this.composeWith("sensei:simpleCRUD", {
           options: { nested: true }
         }, {
@@ -52,33 +50,11 @@ module.exports = Generator.extend({
       /**
        * System Setting
        */
-      if (this.props.type.includes('System Setting')) {
+      if (this.props.type.includes('System Setting (Needs update to use new Timestamp folders)')) {
         this.composeWith("sensei:systemSetting", {
           options: { nested: true }
         }, {
           local: require.resolve("./../systemSetting")
-        });
-      }
-
-      /**
-       * Stateless component
-       */
-      if (this.props.type.includes('Stateless Component (View Only)')) {
-        this.composeWith("sensei:statelessComponent", {
-          options: { nested: true }
-        }, {
-          local: require.resolve("./../statelessComponent")
-        });
-      }
-
-      /**
-       * Component
-       */
-      if (this.props.type.includes('Component')) {
-        this.composeWith("sensei:component", {
-          options: { nested: true }
-        }, {
-          local: require.resolve("./../component")
         });
       }
 
@@ -96,7 +72,7 @@ module.exports = Generator.extend({
       /**
        * Component ES 2015
        */
-      if (this.props.type.includes('Component ES2015')) {
+      if (this.props.type.includes('Component')) {
         this.composeWith("sensei:component-es2015", {
           options: { nested: true }
         }, {
@@ -107,7 +83,7 @@ module.exports = Generator.extend({
       /**
        * User Permission
        */
-      if (this.props.type.includes('User Permission')) {
+      if (this.props.type.includes('User Permission (Needs update to use new Timestamp folders)')) {
         this.composeWith("sensei:userPermission", {
           options: { nested: true }
         }, {
@@ -118,7 +94,7 @@ module.exports = Generator.extend({
       /**
        * Feature Toogle
        */
-      if (this.props.type.includes('Feature Toggle')) {
+      if (this.props.type.includes('Feature Toggle (Needs update to use new Timestamp folders)')) {
         this.composeWith("sensei:featureToggle", {
           options: { nested: true }
         }, {

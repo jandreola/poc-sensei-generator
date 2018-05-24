@@ -1,8 +1,3 @@
-/**
- * @name   {<%= modelName %> Model}
- * @author <%= Author %>
- * @return {function}
- */
 <%
 	function getBlankFor(value, prop) {
 		var type = typeof value
@@ -22,29 +17,45 @@
 		return typeof item === 'object' && !Array.isArray(item)
 	}
 %>
-(function (global) {
-	'use strict';
+/**
+ * @name   {<%= modelName %> Model}
+ * @author <%= Author %>
+ * @return {function}
+ */
+<% if (modelUrl) {%>
+import BaseModel from '~/models/base'
+import { mix } from 'mixwith'
+import ResourceMixin from '~/models/mixins/resource'
+import { API_URL, ID } from '~/models/symbols'
 
-	var <%= modelName %>Class = global.model.Base.createClass({
-		name: '<%= modelName %>',
-		url: '<%= modelUrl %>',
-		constructor: <%= modelName %>,
-		id: '<%= modelID %>',
-		label: '<%= modelLabel %>'
-	})
-
-	function <%= modelName %>(_data) {
-		var data = _data || {}
-
-		global.model.Base.call(this, data)
+const Base = mix(BaseModel).with(ResourceMixin)
+<%} else {%>
+import Base from '~/models/base'
+<%}%>
+const DEFAULTS = {
 <% Object.keys(modelSample).forEach(function(prop) { if (isObject(modelSample[prop])) {%>
-		this.<%= prop %> = <%= `new ${prop}(data.${prop} || {})`%><%} else {%>
-		this.<%= prop %> = m.prop(data.<%= prop %> || <%- getBlankFor(modelSample[prop], prop) %>)<% }}); %>
-	};
-<% Object.keys(modelSample).forEach(function(prop) { if (typeof modelSample[prop] === 'object' && !Array.isArray(modelSample[prop])) {%>
+	<%= prop %>: <%= `new ${prop}, // Consider creating a model for this object`%><%} else {%>
+	<%= prop %>: <%- getBlankFor(modelSample[prop], prop) %>,<% }}); %>
+}
 
-	function <%= prop %>(data) {<% Object.keys(modelSample[prop]).forEach(function(propInner) { %>
-		this.<%= propInner %> = m.prop(data.<%= propInner %> || <%- getBlankFor(modelSample[prop][propInner], propInner) %>)<% }); %>
-	}<% }}); %>
+export default class <%= modelName %> extends Base {
+	constructor(_data = {}) {
+		super(_data)
 
-}(window));
+		let data = {...DEFAULTS, ..._data}
+
+		Object.assign(this, data)
+	}
+
+	static get is() {
+		return '<%= modelName %>'
+	}
+
+	static get [API_URL]() {
+		return '<%= modelUrl %>'
+	}
+
+	static get [ID]() {
+		return '<%= modelID %>'
+	}
+}
