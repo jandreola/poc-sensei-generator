@@ -1,4 +1,4 @@
-import view from './view';
+import view from './views';
 import controller from './controller';
 
 export default { view, controller };
