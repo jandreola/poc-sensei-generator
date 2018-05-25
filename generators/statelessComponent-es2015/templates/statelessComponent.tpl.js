@@ -3,13 +3,8 @@
 * @author <%= Author %>
 * @return {function}
 */
-(function (global){
-	var <%= componentName %> = Util.getObjectFromPath('<%= componentPath %>.<%= componentName %>')
-	<%= componentName %>.view = <%= componentName %>View
+export default function <%= componentName %>() {
+	return m('.<%= componentName %>-component', [
 
-	function <%= componentName %>View() {
-		return m('.<%= componentName %>-component', [
-
-			])
-	}
-}(window))
+	])
+}

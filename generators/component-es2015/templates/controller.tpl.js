@@ -1,8 +1,19 @@
-import vm from './vm'
+import State from './state'
+import Props from './props'
 
-function controller(options) {
+export default function controller(props = {}) {
+	if (!(props instanceof Props)) {
+		props = new Props(props)
+	}
+
+	if (!props.validate()) {
+		throw new Error('props are not valid')
+	}
+
+	const state = new State(props)
+
 	const ctrl = {
-		vm: new vm,
+		state,
 		init
 	}
 
@@ -12,7 +23,5 @@ function controller(options) {
 
 	init()
 
-	return ctrl
+	return Object.freeze(ctrl)
 }
-
-export default controller

@@ -42,13 +42,14 @@ function controller(options) {
 					}
 				})
 				if (!found) ctrl.vm.Items().push(updatedItem[0])
-				return notLoading()
+				notLoading()
 				ctrl.vm.modalCtrl().close()
+				return
 			}, errorHandler)
 	}
 
 	function modalClosed() {
-		ctrl.vm.currentItemInModal(null)
+		setTimeout(() => ctrl.vm.currentItemInModal(null), 0)
 		ctrl.vm.modalCtrl(null)
 	}
 
@@ -87,7 +88,7 @@ function controller(options) {
 	function getItems() {
 		loading()
 		return <%= model %>.query()
-			.then(ctrl.vm.Items)
+			.then(ctrl.vm.Items, errorHandler)
 			.then(notLoading, notLoading)
 	}
 

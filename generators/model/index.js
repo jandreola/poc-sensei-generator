@@ -36,7 +36,7 @@ module.exports = Generator.extend({
         type: 'input',
         name: 'modelPath',
         message: 'Where do you want to save this Model?',
-        default: path.normalize(`Web/global/model`)
+        default: path.normalize(`WebSrc/models/`)
       },
       {
         type: 'input',

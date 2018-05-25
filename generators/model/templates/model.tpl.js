@@ -1,10 +1,5 @@
-/**
- * @name   {<%= modelName %> Model}
- * @author <%= Author %>
- * @return {function}
- */
 <%
-	function getBlankFor(value) {
+	function getBlankFor(value, prop) {
 		var type = typeof value
 		var blank = null
 
@@ -17,24 +12,50 @@
 
 		return blank
 	}
+
+	function isObject(item) {
+		return typeof item === 'object' && !Array.isArray(item)
+	}
 %>
-(function (global) {
-	'use strict';
+/**
+ * @name   {<%= modelName %> Model}
+ * @author <%= Author %>
+ * @return {function}
+ */
+<% if (modelUrl) {%>
+import BaseModel from '~/models/base'
+import { mix } from 'mixwith'
+import ResourceMixin from '~/models/mixins/resource'
+import { API_URL, ID } from '~/models/symbols'
 
-	var <%= modelName %>Class = global.model.Base.createClass({
-		name: '<%= modelName %>',
-		url: '<%= modelUrl %>',
-		constructor: <%= modelName %>,
-		id: '<%= modelID %>',
-		label: '<%= modelLabel %>'
-	})
+const Base = mix(BaseModel).with(ResourceMixin)
+<%} else {%>
+import Base from '~/models/base'
+<%}%>
+const DEFAULTS = {
+<% Object.keys(modelSample).forEach(function(prop) { if (isObject(modelSample[prop])) {%>
+	<%= prop %>: <%= `new ${prop}, // Consider creating a model for this object`%><%} else {%>
+	<%= prop %>: <%- getBlankFor(modelSample[prop], prop) %>,<% }}); %>
+}
 
-	function <%= modelName %>(_data) {
-		var data = _data || {}
+export default class <%= modelName %> extends Base {
+	constructor(_data = {}) {
+		super(_data)
 
-		global.model.Base.call(this, data)
-		<% Object.keys(modelSample).forEach(function(prop) { %>
-		this.<%= prop %> = m.prop(data.<%= prop %> || <%- getBlankFor(modelSample[prop]) %>)<% }); %>
-	};
+		let data = {...DEFAULTS, ..._data}
 
-}(window));
+		Object.assign(this, data)
+	}
+
+	static get is() {
+		return '<%= modelName %>'
+	}
+
+	static get [API_URL]() {
+		return '<%= modelUrl %>'
+	}
+
+	static get [ID]() {
+		return '<%= modelID %>'
+	}
+}
