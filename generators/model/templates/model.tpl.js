@@ -50,12 +50,12 @@ export default class <%= modelName %> extends Base {
 	static get is() {
 		return '<%= modelName %>'
 	}
-
+<% if (modelUrl) {%>
 	static get [API_URL]() {
 		return '<%= modelUrl %>'
 	}
 
 	static get [ID]() {
 		return '<%= modelID %>'
-	}
+	}<% } %>
 }
