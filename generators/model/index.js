@@ -57,7 +57,7 @@ module.exports = Generator.extend({
     this.destinationRoot(process.cwd())
     this.fs.copyTpl(
       this.templatePath('model.tpl.js'),
-      this.destinationPath(path.normalize(`${process.cwd()}/${this.props.modelPath}/${stringFn.kebabCase(this.props.modelName)}.js`)),
+      this.destinationPath(path.normalize(`${process.cwd()}/${this.props.modelPath}/${stringFn.kebabCase(this.props.modelName)}/index.js`)),
       this.props
     )
     this.log(path.normalize(`${process.cwd()}/${this.props.modelPath}/${this.props.modelName}.js`))
