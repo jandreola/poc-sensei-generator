@@ -3,13 +3,16 @@
 		var type = typeof value
 
 		switch (type) {
-			case 'boolean' : return 'checkbox(item.' + prop + ')'
+			case 'boolean' : return 'checkbox(makeProp(item, \'' + prop + '\'))'
 		}
 
-		return 'input(item.' + prop + ')'
+		return 'input(makeProp(item, ' + prop + '))'
 	}
 %>import row from '~/helpers/bootstrapLayoutBuilder'
 import uiElements from '~/components/uiElements';
+import { LABEL, ID } from '~/models/symbols';
+import <%= model %> from '~/models/<%= modelPath %>';
+import { makeProp } from '~/helpers/prop';
 
 const {
 	autocompleterInput,
@@ -20,14 +23,14 @@ const {
 	checkbox
 } = uiElements
 
-function view(ctrl) {
+function view({ state , ...ctrl }) {
 	return m('.<%= componentName %>-component', [
-		Util.if (ctrl.vm.isLoading(), Util.loading, () => {
+		Util.if (state.isLoading, Util.loading, () => {
 			return [
-				Util.if (ctrl.vm.modalCtrl(), widget.modal.view.bind(this, ctrl.vm.modalCtrl())),
+				Util.if (state.modalCtrl, widget.modal.view.bind(this, state.modalCtrl)),
 				row()
 					.col(4, m('span.admintool-main-title', '<%= componentName %>'))
-					.col(4, searchInput(ctrl))
+					.col(4, searchInput(state))
 					.col(4, '.text-right', m('span.btn.btn-success', {
 						onclick: ctrl.addItem
 					}, 'Add New <%= componentName %>')),
@@ -40,8 +43,8 @@ function view(ctrl) {
 							])
 						]),
 						m('tbody', [
-							Util.if (ctrl.vm.Items().length,
-								() => ctrl.vm.Items().map(renderRow.bind(this, ctrl)),
+							Util.if (state.Items.length,
+								() => state.Items.map(renderRow.bind(this, ctrl, state)),
 								() => m('tr', m('td[colspan=999].text-center', 'No items to display.'))
 							)
 						])
@@ -51,23 +54,23 @@ function view(ctrl) {
 	])
 }
 
-function searchInput(ctrl) {
+function searchInput(state) {
 	return m('input.form-control', {
-		oninput: m.withAttr('value', ctrl.vm.searchKeyword),
-		value: ctrl.vm.searchKeyword(),
+		oninput: m.withAttr('value', v => state.searchKeyword = v),
+		value: state.searchKeyword,
 		placeholder: 'Quick Search'
 	})
 }
 
 
-function renderRow(ctrl, item) {
-	if (ctrl.vm.searchKeyword() && !Util.fuzzySearch(item[<%= model %>.label](), ctrl.vm.searchKeyword())) return ''
+function renderRow(ctrl, state, item) {
+	if (state.searchKeyword && !Util.fuzzySearch(item[<%= model %>[LABEL]], state.searchKeyword)) return ''
 	return m('tr', [
 		m('td.is-link', {
 			onclick: ctrl.editItem.bind(this, item)
-		}, item[<%= model %>.label]()),
+		}, item[<%= model %>[LABEL]]),
 		m('td.text-right', m('span.btn.btn-small.btn-danger', {
-			onclick: ctrl.removeItem.bind(this, item[<%= model %>.id]())
+			onclick: ctrl.removeItem.bind(this, item[<%= model %>[ID]])
 		}, [
 			m('i.fa.fa-remove'),
 			' Remove'
@@ -75,8 +78,8 @@ function renderRow(ctrl, item) {
 	])
 }
 
-export function form(ctrl) {
-	const item = ctrl.vm.currentItemInModal()
+export function form({ state , ...ctrl }) {
+	const item = state.currentItemInModal
 	return [
 		<% Object.keys(modelSample).forEach(function(prop) { %>
 		row()

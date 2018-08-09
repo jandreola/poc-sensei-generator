@@ -57,5 +57,9 @@ export default class <%= modelName %> extends Base {
 
 	static get [ID]() {
 		return '<%= modelID %>'
+	}
+
+	static get [LABEL]() {
+		return '<%= modelLabel %>'
 	}<% } %>
 }

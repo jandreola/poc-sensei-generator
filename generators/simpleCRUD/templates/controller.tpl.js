@@ -1,9 +1,22 @@
-import vm from './vm'
-import { form } from './view'
+import State from './state';
+import Props from './props';
+import { form } from './view';
+import { ID } from '~/models/symbols';
+import <%= model %> from '~/models/<%= modelPath %>';
 
-function controller(options) {
+export default function (props = {}) {
+	if (!(props instanceof Props)) {
+		props = new Props(props);
+	}
+
+	if (!props.validate()) {
+		throw new Error('props are not valid');
+	}
+
+	const state = new State(props);
+
 	const ctrl = {
-		vm: new vm,
+		state,
 		addItem,
 		removeItem,
 		editItem,
@@ -11,52 +24,53 @@ function controller(options) {
 	}
 
 	function editItem(item) {
-		openModal(new <%= model %>(item.toJSON()))
+		openModal(new <%= model %>(item));
 	}
 
 	function addItem() {
-		openModal(new <%= model %>)
+		openModal(new <%= model %>);
 	}
 
 	function removeItem(id) {
 		Util.confirm('Are you sure you want to remove this item?', 'Remove', null, 'danger')
 			.then(() => {
-				loading()
+				loading();
 				<%= model %>.remove(id)
 					.then(() => {
-						ctrl.vm.Items(ctrl.vm.Items().filter(item => item[<%= model %>.id]() !== id))
-						notLoading()
+						state.Items = state.Items.filter(item => item[<%= model %>[ID]] !== id);
+						notLoading();
 					}, errorHandler)
 			})
 	}
 
 	function saveCurrentItem(item) {
-		loading()
+		loading();
 		item.save()
 			.then(updatedItem => {
-				let found = false
-				ctrl.vm.Items().forEach(i => {
-					if (i[<%= model %>.id]() === updatedItem[0][<%= model %>.id]()) {
-						i.constructor(updatedItem[0].toJSON())
-						found = true
+				let found = false;
+				state.Items.forEach(i => {
+					if (i[<%= model %>[ID]] === updatedItem[<%= model %>[ID]]) {
+						i.constructor(updatedItem);
+						found = true;
 					}
 				})
-				if (!found) ctrl.vm.Items().push(updatedItem[0])
-				notLoading()
-				ctrl.vm.modalCtrl().close()
-				return
+				if (!found) state.Items.push(updatedItem);
+				notLoading();
+				state.modalCtrl.close();
+
+				return;
 			}, errorHandler)
 	}
 
 	function modalClosed() {
-		setTimeout(() => ctrl.vm.currentItemInModal(null), 0)
-		ctrl.vm.modalCtrl(null)
+		setTimeout(() => state.currentItemInModal = null, 0);
+		state.modalCtrl = null;
 	}
 
 	function openModal(item) {
-		ctrl.vm.currentItemInModal(item)
-		ctrl.vm.modalCtrl(new widget.modal.controller(getModalOptions()))
-		ctrl.vm.modalCtrl().open(form.bind(this, ctrl), ctrl.vm.currentItemInModal())
+		state.currentItemInModal = item;
+		state.modalCtrl = new widget.modal.controller(getModalOptions());
+		state.modalCtrl.open(form.bind(this, ctrl), state.currentItemInModal);
 	}
 
 	function getModalOptions() {
@@ -71,24 +85,24 @@ function controller(options) {
 	}
 
 	function loading() {
-		ctrl.vm.isLoading(true)
-		m.redraw()
+		state.isLoading = true;
+		m.redraw();
 	}
 
 	function notLoading() {
-		ctrl.vm.isLoading(false)
-		m.redraw()
+		state.isLoading = false;
+		m.redraw();
 	}
 
 	function errorHandler(err) {
-		Notify.error(err)
-		notLoading()
+		Notify.error(err);
+		notLoading();
 	}
 
 	function getItems() {
-		loading()
+		loading();
 		return <%= model %>.query()
-			.then(ctrl.vm.Items, errorHandler)
+			.then(items => state.Items = items, errorHandler)
 			.then(notLoading, notLoading)
 	}
 
@@ -98,7 +112,5 @@ function controller(options) {
 
 	init()
 
-	return ctrl
+	return Object.freeze(ctrl)
 }
-
-export default controller

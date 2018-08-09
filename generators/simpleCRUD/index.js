@@ -16,7 +16,12 @@ module.exports = Generator.extend({
       {
         type: 'input',
         name: 'model',
-        message: 'What is the Model Path (e.g. model.Projects)?',
+        message: 'What is the ES6 Model Name (e.g. Projects)?',
+	  },
+	  {
+        type: 'input',
+        name: 'modelPath',
+        message: 'What is the Model Path (e.g. /conductor/...)?',
       },
       {
         type: 'editor',
@@ -67,18 +72,18 @@ module.exports = Generator.extend({
       this.props
     )
     this.fs.copyTpl(
-      this.templatePath('vm.tpl.js'),
-      this.destinationPath(path.normalize(`${process.cwd()}/${this.props.componentPath}/${stringFn.kebabCase(this.props.componentName)}/vm.js`)),
+      this.templatePath('state.tpl.js'),
+      this.destinationPath(path.normalize(`${process.cwd()}/${this.props.componentPath}/${stringFn.kebabCase(this.props.componentName)}/state.js`)),
       this.props
-    )
+	)
+	this.fs.copyTpl(
+		this.templatePath('props.tpl.js'),
+		this.destinationPath(path.normalize(`${process.cwd()}/${this.props.componentPath}/${stringFn.kebabCase(this.props.componentName)}/props.js`)),
+		this.props
+	  )
     this.fs.copyTpl(
       this.templatePath('index.tpl.js'),
       this.destinationPath(path.normalize(`${process.cwd()}/${this.props.componentPath}/${stringFn.kebabCase(this.props.componentName)}/index.js`)),
-      this.props
-    )
-    this.fs.copyTpl(
-      this.templatePath('readme.tpl.md'),
-      this.destinationPath(path.normalize(`${process.cwd()}/${this.props.componentPath}/${stringFn.kebabCase(this.props.componentName)}/readme.md`)),
       this.props
     )
   }

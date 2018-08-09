@@ -27,6 +27,11 @@ module.exports = Generator.extend({
         type: 'input',
         name: 'modelID',
         message: 'What is the primary key (ID) for this model?'
+	  },
+	  {
+        type: 'input',
+        name: 'modelLabel',
+        message: 'What is the label for this model?'
       },
       {
         type: 'input',
