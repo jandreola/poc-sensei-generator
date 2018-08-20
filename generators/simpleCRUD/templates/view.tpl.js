@@ -6,7 +6,7 @@
 			case 'boolean' : return 'checkbox(makeProp(item, \'' + prop + '\'))'
 		}
 
-		return 'input(makeProp(item, ' + prop + '))'
+		return 'input(makeProp(item, \'' + prop + '\'))'
 	}
 %>import row from '~/helpers/bootstrapLayoutBuilder'
 import uiElements from '~/components/uiElements';
