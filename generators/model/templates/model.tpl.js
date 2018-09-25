@@ -32,6 +32,9 @@ const Base = mix(BaseModel).with(ResourceMixin)
 <%} else {%>
 import Base from '~/models/base'
 <%}%>
+
+const _ = require('lodash').noConflict();
+
 const DEFAULTS = {
 <% Object.keys(modelSample).forEach(function(prop) { if (isObject(modelSample[prop])) {%>
 	<%= prop %>: <%= `new ${prop}, // Consider creating a model for this object`%><%} else {%>
