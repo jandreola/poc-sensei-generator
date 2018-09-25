@@ -42,9 +42,7 @@ export default class <%= modelName %> extends Base {
 	constructor(_data = {}) {
 		super(_data)
 
-		let data = {...DEFAULTS, ..._data}
-
-		Object.assign(this, data)
+		Object.assign(this, _.cloneDeep({...DEFAULTS, ..._data}))
 	}
 
 	static get is() {
