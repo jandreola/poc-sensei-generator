@@ -1,5 +1,5 @@
 export default class State {
-	constructor(options = {}) {
-		this.loading = true
+	constructor(props = {}) {
+		this.loading = true;
 	}
 }

@@ -1,23 +1,23 @@
-import controller from '../controller'
+import controller from '../controller';
 
-const props = {}
-let ctrl
+const props = {};
+let ctrl;
 
 function createInstance() {
-	return new controller(props)
+	return new controller(props);
 }
 
 
 describe('<%= componentName %> controller', function () {
 	before(function () {
-		ctrl = createInstance()
-	})
+		ctrl = createInstance();
+	});
 
 	describe('method name', function () {
 		it('should...', function () {
-			assert.isOk(ctrl)
-		})
-	})
+			assert.isOk(false);
+		});
+	});
 
-	after(function () {})
-})
+	after(function () {});
+});

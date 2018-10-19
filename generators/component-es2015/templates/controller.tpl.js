@@ -1,16 +1,16 @@
-import State from './state'
-import Props from './props'
+import State from './state';
+import Props from './props';
 
 export default function controller(props = {}) {
 	if (!(props instanceof Props)) {
-		props = new Props(props)
+		props = new Props(props);
 	}
 
 	if (!props.validate()) {
-		throw new Error('props are not valid')
+		throw new Error('props are not valid');
 	}
 
-	const state = new State(props)
+	const state = new State(props);
 
 	const ctrl = {
 		state,
@@ -21,7 +21,7 @@ export default function controller(props = {}) {
 
 	}
 
-	init()
+	init();
 
-	return Object.freeze(ctrl)
+	return Object.freeze(ctrl);
 }
