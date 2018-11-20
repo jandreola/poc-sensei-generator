@@ -28,11 +28,6 @@ module.exports = Generator.extend({
         name: 'modelID',
         message: 'What is the primary key (ID) for this model?'
 	  },
-	  {
-        type: 'input',
-        name: 'modelLabel',
-        message: 'What is the label for this model?'
-      },
       {
         type: 'input',
         name: 'modelLabel',
@@ -62,9 +57,9 @@ module.exports = Generator.extend({
     this.destinationRoot(process.cwd())
     this.fs.copyTpl(
       this.templatePath('model.tpl.js'),
-      this.destinationPath(path.normalize(`${process.cwd()}/${this.props.modelPath}/${stringFn.kebabCase(this.props.modelName)}/index.js`)),
+      this.destinationPath(path.normalize(`${process.cwd()}/${this.props.modelPath}/${stringFn.kebabCase(this.props.modelName)}.js`)),
       this.props
     )
-    this.log(path.normalize(`${process.cwd()}/${this.props.modelPath}/${this.props.modelName}.js`))
+    this.log(path.normalize(`${process.cwd()}/${this.props.modelPath}/${stringFn.kebabCase(this.props.modelName)}.js`))
   }
 });

@@ -26,7 +26,7 @@
 import BaseModel from '~/models/base'
 import { mix } from 'mixwith'
 import ResourceMixin from '~/models/mixins/resource'
-import { API_URL, ID } from '~/models/symbols'
+import { API_URL, ID, LABEL } from '~/models/symbols'
 
 const Base = mix(BaseModel).with(ResourceMixin)
 <%} else {%>
